@@ -39,8 +39,7 @@ for pageList in pageLists:
   		url = fileLink['href']
   		print url
   		
-  		'''
-  		if '.xls' in url:
+  		if 'dowloads' in url:
   			# create the right strings for the new filename
   			title = fileLink.text
   			csvYr = title.split(' ')[1]
@@ -51,4 +50,3 @@ for pageList in pageLists:
   			todays_date = str(datetime.now())
   			scraperwiki.sqlite.save(unique_keys=['l'], data={"l": encoded_link, "f": filename, "d": todays_date })
   			print filename
-		'''
