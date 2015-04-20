@@ -28,6 +28,7 @@ pageLists = block.findAll('li')
 
 for pageList in pageLists:
 	pageUrl = pageList.a['href']
+	print pageList.text
 	if 'CSV' in pageList.text: # Looks for 'CSV' in the text of the list tag
 	  	html2 = urllib2.urlopen(pageUrl)
 	  	soup2 = BeautifulSoup(html2)
