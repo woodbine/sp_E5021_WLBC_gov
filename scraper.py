@@ -27,24 +27,21 @@ block = soup.find('section', {'class':'page-content inner_content'})
 pageLists = block.findAll('li')
 
 for pageList in pageLists:
-  pageUrl = pageList.a['href']
-  
-  if 'CSV' in pageList.text: # Looks for 'CSV' in the text of the list tag
-  	html2 = urllib2.urlopen(pageUrl)
-  	soup2 = BeautifulSoup(html2)
-  	
-  	fileLinks = soup2.findAll('a', href=True)
-  	
-  	for fileLink in fileLinks:
-  		url = fileLink['href']
-  		if 'dowloads' in url:
-  			# create the right strings for the new filename
-  			title = fileLink.text
-  			csvYr = title.split(' ')[1]
-  			csvMth = title.split(' ')[0][:3]
-  			csvMth = csvMth.upper()
-  			csvMth = convert_mth_strings(csvMth);
-  			filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
-  			todays_date = str(datetime.now())
-  			scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
-  			print filename
+	pageUrl = pageList.a['href']
+	if 'CSV' in pageList.text: # Looks for 'CSV' in the text of the list tag
+	  	html2 = urllib2.urlopen(pageUrl)
+	  	soup2 = BeautifulSoup(html2)
+	  	fileLinks = soup2.findAll('a', href=True)
+	  	for fileLink in fileLinks:
+	  		url = fileLink['href']
+	  		if 'dowloads' in url:
+	  			# create the right strings for the new filename
+	  			title = fileLink.text
+	  			csvYr = title.split(' ')[1]
+	  			csvMth = title.split(' ')[0][:3]
+	  			csvMth = csvMth.upper()
+	  			csvMth = convert_mth_strings(csvMth);
+	  			filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
+	  			todays_date = str(datetime.now())
+	  			scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
+	  			print filename
