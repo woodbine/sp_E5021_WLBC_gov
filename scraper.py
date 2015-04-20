@@ -37,12 +37,9 @@ for pageList in pageLists:
   	
   	for fileLink in fileLinks:
   		url = fileLink['href']
-  		parsed_link = urlparse.urlsplit(url.encode('utf8'))
-  		parsed_link = parsed_link._replace(path=urllib.quote(parsed_link.path))
-  		encoded_link = parsed_link.geturl()
-  		if encoded_link.startswith('/Council_government_'):
-  			encoded_link = 'http://www.luton.gov.uk'+encoded_link
-  			
+  		print url
+  		
+  		'''
   		if '.xls' in url:
   			# create the right strings for the new filename
   			title = fileLink.text
@@ -54,3 +51,4 @@ for pageList in pageLists:
   			todays_date = str(datetime.now())
   			scraperwiki.sqlite.save(unique_keys=['l'], data={"l": encoded_link, "f": filename, "d": todays_date })
   			print filename
+		'''
