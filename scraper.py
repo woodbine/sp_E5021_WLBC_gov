@@ -28,6 +28,7 @@ pageLists = block.findAll('li')
 
 for pageList in pageLists:
 	pageUrl = pageList.a['href']
+	title = pageUrl.contents[0]
 	if 'CSV' in pageList.text: # Looks for 'CSV' in the text of the list tag
 	  	html2 = urllib2.urlopen(pageUrl)
 	  	soup2 = BeautifulSoup(html2)
@@ -36,7 +37,6 @@ for pageList in pageLists:
 	  		url = fileLink['href']
 	  		if 'http://www.wandsworth.gov.uk/download/downloads/id/' in url:
 	  			# create the right strings for the new filename
-	  			title = fileLink.text
 	  			csvYr = title.split(' ')[1]
 	  			csvMth = title.split(' ')[0][:3]
 	  			csvMth = csvMth.upper()
