@@ -37,8 +37,6 @@ for pageList in pageLists:
   	
   	for fileLink in fileLinks:
   		url = fileLink['href']
-  		print url
-  		
   		if 'dowloads' in url:
   			# create the right strings for the new filename
   			title = fileLink.text
